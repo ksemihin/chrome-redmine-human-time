@@ -1,6 +1,7 @@
 {
-  "name": "Redmine time",
+  "name": "Redmine Human time view",
   "version": "1.0",
+  "description": "View human readable time",
   "manifest_version": 2,
   "content_scripts": [
     {
@@ -9,14 +10,9 @@
 	  "run_at": "document_end"
     }
   ],
-  "permissions": [
-    "tabs", "https://prj.adyax.com/*",
-    "activeTab"
-  ],
-  "web_accessible_resources": [
-    "/js/injected.js"
-  ],
-  "icons": { "16": "img/icon.png",
-           "48": "img/icon.png",
-          "128": "img/icon-128.png" }
+  "icons": {
+    "16":   "img/icon-16.png",
+    "48":   "img/icon-48.png",
+    "128":  "img/icon-128.png"
+  }
 }
