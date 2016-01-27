@@ -1,0 +1,22 @@
+{
+  "name": "Redmine time",
+  "version": "1.0",
+  "manifest_version": 2,
+  "content_scripts": [
+    {
+      "matches": [ "https://prj.adyax.com/*" ],
+      "js": [ "/js/external/jquery.js", "/js/background.js" ],
+	  "run_at": "document_end"
+    }
+  ],
+  "permissions": [
+    "tabs", "https://prj.adyax.com/*",
+    "activeTab"
+  ],
+  "web_accessible_resources": [
+    "/js/injected.js"
+  ],
+  "icons": { "16": "img/icon.png",
+           "48": "img/icon.png",
+          "128": "img/icon-128.png" }
+}
