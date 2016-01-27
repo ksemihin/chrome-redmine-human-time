@@ -1,35 +1,31 @@
 
+var elements = jQuery('.spent-time a, .hours:not(.hours.hours-int, .hours.hours-dec)');
 
-var hours_list = jQuery(document.body).find('td.spent-time');
-
-hours_list.each(function(index, element) {
-	var f_data = parseFloat(jQuery(element).text());
-
-	$(element).after(fd(f_data));
+elements.each(function(i, data) {
+  var el_val = parseFloat(jQuery(data).text());
+  var new_el = jQuery('<div></div>')
+  	.addClass('human-time').attr('style','color: burlywood;')
+	  .text(TimeEntry_Convert(el_val));
+  jQuery(data).after(new_el);
 });
 
-function offset(a, b, c) {
+/**
+ * Format for time hh:mm
+**/
+function TimeEntry_Format(hours, minutes) {
+  var strip = function(a, b, c) {
 		for (; a.length < c;) a = b + a;
 		return a
+  };
+  return strip(hours.toString(), "0", 2) + ":" + strip(minutes.toString(), "0", 2);
 };
 
 /**
-2.04
-h= 2
-m =
+* 	Convert from decimal time to human readable time.
 **/
-function fd(num) {
-	var b = parseInt(num, 10),
-      hours = Math.floor(b),
-      minutes = Math.floor((num - hours) * 60),
-      f = offset(hours.toString(), "0", 2) + ":" + offset(minutes.toString(), "0", 2);
-  return f;
+function TimeEntry_Convert (value) {
+  var int_val = parseInt(value, 10),
+      hours = Math.floor(int_val),
+      minutes = Math.floor((value - hours) * 60);
+  return TimeEntry_Format(hours, minutes);
 };
-
-
-function minTommss(minutes){
- var sign = minutes < 0 ? "-" : "";
- var min = Math.floor(Math.abs(minutes));
- var sec = Math.floor((Math.abs(minutes) * 60) % 60);
- return sign + (min < 10 ? "0" : "") + min + ":" + (sec < 10 ? "0" : "") + sec;
-}
